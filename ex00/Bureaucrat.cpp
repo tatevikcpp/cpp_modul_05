@@ -15,12 +15,12 @@ Bureaucrat::Bureaucrat(const Bureaucrat& obj)
 Bureaucrat::Bureaucrat(int grade, std::string name)
 {
     std::cout << __PRETTY_FUNCTION__ << std::endl;
-    if (grade > 150)
+    if (grade < 1)
     {
         std::cout << "lalala\n";
         throw GradeTooHighException(); //nested class
     }
-    else if (grade < 1)
+    else if (grade > 150)
         throw GradeTooLowException();
     else
     {
@@ -58,33 +58,24 @@ int Bureaucrat::getGrade(void) const
 
 void Bureaucrat::increment()
 {
-    try
-    {
-        if (this->_grade < 150)
-            this->_grade++;
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
+    std::cout << __PRETTY_FUNCTION__ << std::endl;
+    if (this->_grade == 1)
+        throw Bureaucrat::GradeTooHighException();
+    this->_grade--;
 }
 
 void Bureaucrat::decrement()
 {
-    try
-    {
-        if (this->_grade > 1)
-            this->_grade--;
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    } 
+    std::cout << __PRETTY_FUNCTION__ << std::endl;
+    if (this->_grade == 150)
+        throw Bureaucrat::GradeTooLowException();
+    this->_grade++;
 }
 
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()
 {
+    std::cout << "LALALA\n";
     return ("error 150\n");
 }
 

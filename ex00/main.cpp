@@ -4,29 +4,32 @@ int main()
 {
     try
     {
-        Bureaucrat obj(20, "bob");
-        obj.increment();
-        obj.increment();
-        obj.increment();
-        obj.increment();
+        Bureaucrat obj(149, "bob");
+        // obj.increment();
+        // obj.increment();
+        // obj.increment();
+        // obj.increment();
+        obj.decrement();
         obj.decrement();
 
+
         std::cout << obj;
-        // std::cout << obj.getGrade();
+        std::cout << obj.getGrade();
 
         // Bureaucrat jon = obj;
-        Bureaucrat jon;
-        jon = obj;
-        std::cout << "jon darcav: " << jon << std::endl;
+    //     Bureaucrat jon;
+    //     jon = obj;
+    //     std::cout << "jon darcav: " << jon << std::endl;
     }
 
     catch(const Bureaucrat::GradeTooHighException& ex)
     {
-       ex.what();
+       std::cout << ex.what();
     }
 
+    // catch(std::exca)
     catch(const Bureaucrat::GradeTooLowException& ex)
     {
-       ex.what();
+       std::cout << ex.what();
     }
 }

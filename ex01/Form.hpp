@@ -19,18 +19,20 @@ class Form
         int get_gradeExecute() const;
         int get_grade() const;
         bool get_signed() const;
-        void increment();
-        void decrement();
+        // void increment();
+        // void decrement();
         class GradeTooLowException : public std::exception
         {
             // GradeTooLowException() { std::cout << __PRETTY_FUNCTION__ << std::endl;}
-            const char* what() const throw();
+            public:
+                const char* what() const throw();
         };
 
         class GradeTooHighException : public std::exception
         {
             // GradeTooHighException() { std::cout << __PRETTY_FUNCTION__ << std::endl;}
-            const char* what() const throw();
+            public:
+                const char* what() const throw();
         };
 
     private:

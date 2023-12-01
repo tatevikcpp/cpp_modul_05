@@ -63,40 +63,40 @@ int Form::get_gradeExecute() const
     return (this->_gradeExecute);
 }
 
-int Form::get_gradeSign() const
-{
-    return (this->_gradeSign);
-}
+// int Form::get_gradeSign() const
+// {
+//     return (this->_gradeSign);
+// }
 
 bool Form::get_signed() const
 {
     return (this->_signed);
 }
 
-void Form::increment()
-{
-    std::cout << __PRETTY_FUNCTION__ << std::endl;
-    if (this->_gradeSign == 1)
-        throw Form::GradeTooHighException();
-    this->_grade--;
-}
+// void Form::increment()
+// {
+//     std::cout << __PRETTY_FUNCTION__ << std::endl;
+//     if (this->_gradeSign == 1)
+//         throw Form::GradeTooHighException();
+//     this->_grade--;
+// }
 
-void Form::decrement()
-{
-    std::cout << __PRETTY_FUNCTION__ << std::endl;
-    if (this->_gradeSign == 150)
-        throw Form::GradeTooLowException();
-    this->_grade++;
-}
+// void Form::decrement()
+// {
+//     std::cout << __PRETTY_FUNCTION__ << std::endl;
+//     if (this->_gradeSign == 150)
+//         throw Form::GradeTooLowException();
+//     this->_grade++;
+// }
 
 const char* Form::GradeTooHighException::what() const throw()
 {
-    return ("Grade Too High Exception\n");
+    return ("Grade Too High Exception for Form");
 }
 
 const char* Form::GradeTooLowException::what() const throw()
 {
-    return ("Grade Too Low Exception\n");
+    return ("Grade Too Low Exception for Form");
 }
 
 std::ostream& operator<<(std::ostream& os, const Form& obj)

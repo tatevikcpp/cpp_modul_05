@@ -1,5 +1,6 @@
 #include "Bureaucrat.hpp"
 
+
 Bureaucrat::Bureaucrat()
 {
 
@@ -55,28 +56,18 @@ int Bureaucrat::getGrade(void) const
 
 void Bureaucrat::increment()
 {
-    try
-    {
-        if (this->_grade < 150)
-            this->_grade++;
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
+    std::cout << __PRETTY_FUNCTION__ << std::endl;
+    if (this->_grade == 1)
+        throw Bureaucrat::GradeTooHighException();
+    this->_grade--;
 }
 
 void Bureaucrat::decrement()
 {
-    try
-    {
-        if (this->_grade > 1)
-            this->_grade--;
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    } 
+    std::cout << __PRETTY_FUNCTION__ << std::endl;
+    if (this->_grade == 150)
+        throw Bureaucrat::GradeTooLowException();
+    this->_grade++;
 }
 
 
@@ -94,4 +85,20 @@ const char* Bureaucrat::GradeTooLowException::what() const throw()
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& obj)
 {
     return (os << "_grade = " << obj.getGrade() << "\n" << "_name = " << obj.getName() << "\n"); 
+}
+
+//  Form
+
+void Bureaucrat::signForm(const Form& obj)
+{
+    if (obj.get_signed() == 1)
+    {
+        std::cout << this->_name << " signed " << obj.get_name() << "\n";
+    }
+    else
+    {
+        // <bureaucrat> couldn’t sign <form> because <reason>
+        std::cout << this->_name << " couldn’t sign " << obj.get_name() << 
+        " because " << obj.get_gradeSign() << "\n";
+    }
 }

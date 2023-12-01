@@ -1,4 +1,4 @@
-NAME = dynamicCast
+NAME = form
 
 TMP = objs
 

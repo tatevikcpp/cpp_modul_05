@@ -1,18 +1,22 @@
 #pragma once
 #include <iostream>
+#include "Form.hpp"
+
 
 class Bureaucrat
 {
     public:
         Bureaucrat();
         Bureaucrat(const Bureaucrat& obj);
-        Bureaucrat(int grade, std::string name);
+        Bureaucrat(int grade, const std::string& name);
         ~Bureaucrat();
         Bureaucrat& operator=(const Bureaucrat& obj);
         std::string getName(void) const;
         int getGrade(void) const;
         void increment();
         void decrement();
+
+        void signForm(const Form& obj); // add a signForm() member function to the Bureaucra
 
         // class Exception : public std::exception
         // {

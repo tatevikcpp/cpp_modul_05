@@ -4,7 +4,7 @@ int main()
 {
     try
     {
-        Bureaucrat obj(920);
+        Form obj(920);
         obj.increment();
         obj.increment();
         obj.increment();
@@ -17,11 +17,11 @@ int main()
 
     catch(const Bureaucrat::GradeTooHighException& ex)
     {
-       ex.what();
+       std::cout << ex.what();
     }
 
     catch(const Bureaucrat::GradeTooLowException& ex)
     {
-       ex.what();
+       std::cout << ex.what();
     }
 }

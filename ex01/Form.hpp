@@ -1,12 +1,14 @@
 #pragma once
 #include "Bureaucrat.hpp"
 
+class Bureaucrat;
+
 class Form
 {
     public:
         Form(/* args */);
         Form(const Form& obj);
-        Form(std::string name/* , int grade */); // TO DO  kisat
+        Form(std::string name, int gradeSign); // TO DO  kisat
         ~Form();
         Form& operator=(const Form& obj);
 
@@ -21,21 +23,21 @@ class Form
         void decrement();
         class GradeTooLowException : public std::exception
         {
-            GradeTooLowException() { std::cout << __PRETTY_FUNCTION__ << std::endl;}
+            // GradeTooLowException() { std::cout << __PRETTY_FUNCTION__ << std::endl;}
             const char* what() const throw();
         };
 
         class GradeTooHighException : public std::exception
         {
-            GradeTooHighException() { std::cout << __PRETTY_FUNCTION__ << std::endl;}
+            // GradeTooHighException() { std::cout << __PRETTY_FUNCTION__ << std::endl;}
             const char* what() const throw();
         };
 
     private:
         // int _grade;
         const std::string _name;
-        const int  _gradeSign;
-        const int _gradeExecute;
+        const int  _gradeSign; //(1, 150)
+        const int _gradeExecute; // (1, 150)
         bool _signed;
 };
 

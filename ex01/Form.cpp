@@ -1,22 +1,22 @@
 #include "Form.hpp"
 
-Form::Form(/* args */) : _signed(0)
+Form::Form(/* args */) : _signed(0), _name("name"), _gradeSign(1), _gradeExecute(1)
 {
+
 }
 
 Form::~Form()
 {
+
 }
 
-Form::Form(std::string name/* , int grade */, int _gradeSign) : _name(name), _signed(0) //esim?
+Form::Form(std::string name, int gradeSign) : _name(name), _signed(0), _gradeSign(gradeSign), _gradeExecute(1) // 
 {
     std::cout << __PRETTY_FUNCTION__ << std::endl;
     if (_gradeSign < 1)
         throw GradeTooHighException(); //nested class
     else if (_gradeSign > 150)
         throw GradeTooLowException();
-    else
-        this->_gradeSign = _gradeSign; // TO DO erevi
 }
 
 Form::Form(const Form& obj) : _gradeSign(obj._gradeSign), _gradeExecute(obj._gradeExecute), 
@@ -43,20 +43,13 @@ Form& Form::operator=(const Form& obj) //TO DO kisat
 
 void Form::beSigned(const Bureaucrat& obj)
 {
-    if (obj._grade <= this->get_gradeSign)
+    if (obj.getGrade() <= this->_gradeSign)
         this->_signed = 1;
+    else
+        throw Form::GradeTooLowException();
 }
 
-
-// void Form::signForm() const
-// {
-//     if (this->_signed == 1)
-//     {
-
-//     }
-// }
-
-std::string From::get_name() const
+std::string Form::get_name() const
 {
     return (this->_name);
 }
@@ -67,12 +60,12 @@ int Form::get_gradeSign() const
 }
 int Form::get_gradeExecute() const
 {
-    return (this->_gradeRequired);
+    return (this->_gradeExecute);
 }
 
-int Form::get_grade() const
+int Form::get_gradeSign() const
 {
-    return (this->_grade);
+    return (this->_gradeSign);
 }
 
 bool Form::get_signed() const
@@ -83,7 +76,7 @@ bool Form::get_signed() const
 void Form::increment()
 {
     std::cout << __PRETTY_FUNCTION__ << std::endl;
-    if (this->_grade == 1)
+    if (this->_gradeSign == 1)
         throw Form::GradeTooHighException();
     this->_grade--;
 }
@@ -91,19 +84,19 @@ void Form::increment()
 void Form::decrement()
 {
     std::cout << __PRETTY_FUNCTION__ << std::endl;
-    if (this->_grade == 150)
+    if (this->_gradeSign == 150)
         throw Form::GradeTooLowException();
     this->_grade++;
 }
 
 const char* Form::GradeTooHighException::what() const throw()
 {
-    return ("lalala\n");
+    return ("Grade Too High Exception\n");
 }
 
-const char* Form::GradeTooHighException::what() const throw()
+const char* Form::GradeTooLowException::what() const throw()
 {
-    return ("lolololo\n");
+    return ("Grade Too Low Exception\n");
 }
 
 std::ostream& operator<<(std::ostream& os, const Form& obj)

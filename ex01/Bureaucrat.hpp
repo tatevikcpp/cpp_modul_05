@@ -2,6 +2,7 @@
 #include <iostream>
 #include "Form.hpp"
 
+class Form;
 
 class Bureaucrat
 {
@@ -15,8 +16,7 @@ class Bureaucrat
         int getGrade(void) const;
         void increment();
         void decrement();
-
-        void signForm(const Form& obj); // add a signForm() member function to the Bureaucra
+        void signForm(Form& obj);
 
         // class Exception : public std::exception
         // {
@@ -58,11 +58,38 @@ class Bureaucrat
             // private:
                 /* data */
     private:
-        std::string _name;
+        const std::string _name;
         int _grade;
 }; 
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& obj);
 // {
 //     return (os << "_grade = " << obj.getGrade() << "\n" << "_name = " << obj.getName() << "\n"); 
+// }
+
+
+// void Bureaucrat::increment()
+// {
+//     try
+//     {
+//         if (this->_grade < 150)
+//             this->_grade++;
+//     }
+//     catch(const std::exception& e)
+//     {
+//         std::cerr << e.what() << '\n';
+//     }
+// }
+
+// void Bureaucrat::decrement()
+// {
+//     try
+//     {
+//         if (this->_grade > 1)
+//             this->_grade--;
+//     }
+//     catch(const std::exception& e)
+//     {
+//         std::cerr << e.what() << '\n';
+//     } 
 // }

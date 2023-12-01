@@ -1,48 +1,43 @@
 #include "Bureaucrat.hpp"
 
-
-Bureaucrat::Bureaucrat()
+Bureaucrat::Bureaucrat() : _name("name"), _grade(1) 
 {
-
+    std::cout << __PRETTY_FUNCTION__ << std::endl;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& obj)
+Bureaucrat::Bureaucrat(const Bureaucrat& obj) : _name(obj._name)
 {
-    this->_name = obj._name;
+    std::cout << __PRETTY_FUNCTION__ << std::endl;
+    // this->_name = obj._name;
     this->_grade = obj._grade;
 }
 
-Bureaucrat::Bureaucrat(int grade, const std::string& name)
+Bureaucrat::Bureaucrat(int grade, const std::string& name) : _name(name)
 {
-    if (grade > 150)
+    std::cout << __PRETTY_FUNCTION__ << std::endl;
+    if (grade < 1)
     {
-        std::cout << "lalala\n";
         throw GradeTooHighException(); //nested class
     }
-    else if (grade < 1)
+    else if (grade > 150)
         throw GradeTooLowException();
-    else
-    {
-        this->_grade = grade;
-        this->_name = name;
-    }
+    this->_grade = grade;
 }
 
 Bureaucrat::~Bureaucrat()
 {
-
+    std::cout << __PRETTY_FUNCTION__ << std::endl;
 }
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& obj)
 {
+    std::cout << __PRETTY_FUNCTION__ << std::endl;
     if (this != &obj)
     {
-        this->_name = obj._name;
         this->_grade = obj._grade;
     }
     return (*this);
 }
-
 
 std::string Bureaucrat::getName(void) const
 {
@@ -73,32 +68,31 @@ void Bureaucrat::decrement()
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()
 {
-    return ("error 150\n");
+    return ("Grade Too High Exception");
 }
-
 
 const char* Bureaucrat::GradeTooLowException::what() const throw()
 {
-    return ("error 1\n");
+    return ("Grade Too Low Exception");
 }
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& obj)
 {
-    return (os << "_grade = " << obj.getGrade() << "\n" << "_name = " << obj.getName() << "\n"); 
+    // <name>, bureaucrat grade <grade>
+    return (os << obj.getName() << ", bureaucrat grade " << obj.getGrade());
 }
 
-//  Form
-
-void Bureaucrat::signForm(const Form& obj)
+void Bureaucrat::signForm(Form& obj)
 {
-    if (obj.get_signed() == 1)
+    try
     {
+        obj.beSigned(*this);
         std::cout << this->_name << " signed " << obj.get_name() << "\n";
     }
-    else
+    catch(std::exception &ex)
     {
         // <bureaucrat> couldn’t sign <form> because <reason>
         std::cout << this->_name << " couldn’t sign " << obj.get_name() << 
-        " because " << obj.get_gradeSign() << "\n";
+        " because " << ex.what() << "\n";
     }
 }

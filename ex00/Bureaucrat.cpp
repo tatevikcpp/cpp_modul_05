@@ -1,32 +1,27 @@
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat()
+Bureaucrat::Bureaucrat() : _grade(1), _name("name")
 {
     std::cout << __PRETTY_FUNCTION__ << std::endl;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& obj)
+Bureaucrat::Bureaucrat(const Bureaucrat& obj) : _name(obj._name)
 {
     std::cout << __PRETTY_FUNCTION__ << std::endl;
-    this->_name = obj._name;
+    // this->_name = obj._name;
     this->_grade = obj._grade;
 }
 
-Bureaucrat::Bureaucrat(int grade, std::string name)
+Bureaucrat::Bureaucrat(int grade, const std::string& name) : _name(name)
 {
     std::cout << __PRETTY_FUNCTION__ << std::endl;
     if (grade < 1)
     {
-        std::cout << "lalala\n";
         throw GradeTooHighException(); //nested class
     }
     else if (grade > 150)
         throw GradeTooLowException();
-    else
-    {
-        this->_grade = grade;
-        this->_name = name;
-    }
+    this->_grade = grade;
 }
 
 Bureaucrat::~Bureaucrat()
@@ -39,7 +34,6 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& obj)
     std::cout << __PRETTY_FUNCTION__ << std::endl;
     if (this != &obj)
     {
-        this->_name = obj._name;
         this->_grade = obj._grade;
     }
     return (*this);
@@ -75,17 +69,17 @@ void Bureaucrat::decrement()
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()
 {
-    std::cout << "LALALA\n";
-    return ("error 150\n");
+    return ("Grade Too High Exception");
 }
 
 
 const char* Bureaucrat::GradeTooLowException::what() const throw()
 {
-    return ("error 1\n");
+    return ("Grade Too Low Exception");
 }
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& obj)
 {
-    return (os << "_grade = " << obj.getGrade() << "\n" << "_name = " << obj.getName() << "\n"); 
+    // <name>, bureaucrat grade <grade>
+    return (os << obj.getName() << ", bureaucrat grade " << obj.getGrade());
 }

@@ -10,12 +10,12 @@ Form::~Form()
 
 }
 
-Form::Form(std::string name, int gradeSign) : _name(name), _signed(0), _gradeSign(gradeSign), _gradeExecute(1) // 
+Form::Form(std::string name, int gradeSign, int gradeExecute) : _name(name), _signed(0), _gradeSign(gradeSign), _gradeExecute(gradeExecute) // 
 {
-    std::cout << __PRETTY_FUNCTION__ << std::endl;
-    if (_gradeSign < 1)
+    // std::cout << __PRETTY_FUNCTION__ << std::endl;
+    if (_gradeSign < 1 || _gradeExecute < 1)
         throw GradeTooHighException(); //nested class
-    else if (_gradeSign > 150)
+    else if (_gradeSign > 150 || _gradeExecute > 150)
         throw GradeTooLowException();
 }
 
@@ -43,6 +43,8 @@ Form& Form::operator=(const Form& obj) //TO DO kisat
 
 void Form::beSigned(const Bureaucrat& obj)
 {
+    if (this->_signed)
+        throw Form::GradeError();
     if (obj.getGrade() <= this->_gradeSign)
         this->_signed = 1;
     else
@@ -63,31 +65,10 @@ int Form::get_gradeExecute() const
     return (this->_gradeExecute);
 }
 
-// int Form::get_gradeSign() const
-// {
-//     return (this->_gradeSign);
-// }
-
 bool Form::get_signed() const
 {
     return (this->_signed);
 }
-
-// void Form::increment()
-// {
-//     std::cout << __PRETTY_FUNCTION__ << std::endl;
-//     if (this->_gradeSign == 1)
-//         throw Form::GradeTooHighException();
-//     this->_grade--;
-// }
-
-// void Form::decrement()
-// {
-//     std::cout << __PRETTY_FUNCTION__ << std::endl;
-//     if (this->_gradeSign == 150)
-//         throw Form::GradeTooLowException();
-//     this->_grade++;
-// }
 
 const char* Form::GradeTooHighException::what() const throw()
 {
@@ -99,7 +80,19 @@ const char* Form::GradeTooLowException::what() const throw()
     return ("Grade Too Low Exception for Form");
 }
 
+const char* Form::GradeError::what() const throw()
+{
+    return ("The form is already signed");
+}
+
 std::ostream& operator<<(std::ostream& os, const Form& obj)
 {
-    return (os << "name = " << obj.get_name()); //TO DO esim ? 
+    os << obj.get_name();
+    obj.get_signed() == false ? std::cout << ", is not signed." :
+		std::cout << ", is signed.";
+    os << " It is required " 
+        << obj.get_gradeSign() <<" grade to sign and "
+        <<  obj.get_gradeExecute() << " grade to execute"; 
+       
+    return (os);
 }

@@ -1,8 +1,8 @@
 #pragma once
 #include <iostream>
-#include "Form.hpp"
+#include "AForm.hpp"
 
-class Form;
+class AForm;
 
 class Bureaucrat
 {
@@ -16,7 +16,8 @@ class Bureaucrat
         int getGrade(void) const;
         void increment();
         void decrement();
-        void signForm(Form& obj);
+        void signForm(AForm& obj);
+        void executeForm(const AForm& form);
 
         // class Exception : public std::exception
         // {
@@ -28,7 +29,7 @@ class Bureaucrat
             public:
             GradeTooHighException()
             {
-                // std::cout << __PRETTY_FUNCTION__ << std::endl;
+                std::cout << __PRETTY_FUNCTION__ << std::endl;
             }
                 const char* what() const throw();
                 // {
@@ -43,7 +44,7 @@ class Bureaucrat
             public:
             GradeTooLowException()
             {
-                // std::cout << __PRETTY_FUNCTION__ << std::endl;
+                std::cout << __PRETTY_FUNCTION__ << std::endl;
             }
                 const char* what() const throw();
                 // {

@@ -3,14 +3,15 @@
 
 class Bureaucrat;
 
-class Form
+class AForm
 {
     public:
-        Form(/* args */);
-        Form(const Form& obj);
-        Form(std::string name, int gradeSign, int gradeExecute); // TO DO  kisat
-        ~Form();
-        Form& operator=(const Form& obj);
+        AForm(/* args */);
+        AForm(const AForm& obj);
+        AForm(std::string name, int gradeSign, int gradeExecute);
+
+        ~AForm();
+        AForm& operator=(const AForm& obj);
 
         void beSigned(const Bureaucrat& obj);
         // void signForm() const;
@@ -19,7 +20,9 @@ class Form
         int get_gradeExecute() const;
         // int get_grade() const;
         bool get_signed() const;
-        // void increment();
+        void execute(Bureaucrat const & executor) const;
+        virtual void action() const = 0;
+        // void increment();    
         // void decrement();
         class GradeTooLowException : public std::exception
         {
@@ -50,4 +53,4 @@ class Form
         bool _signed;
 };
 
-std::ostream& operator<<(std::ostream& os, const Form& obj);
+std::ostream& operator<<(std::ostream& os, const AForm& obj);

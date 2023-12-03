@@ -39,10 +39,18 @@ void AForm::beSigned(const Bureaucrat& obj)
 {
     if (this->_signed)
         throw AForm::GradeError();
+    std::cout << "BB.getGrade() = " << obj.getGrade() << "\n";
+    std::cout << "Form->_gradeSign = " << this->_gradeSign << "\n";
     if (obj.getGrade() <= this->_gradeSign)
+    {
         this->_signed = 1;
+        std::cout << "form->_signed = " << this->_signed << "\n"; 
+    }
     else
+    {
+        std::cout << "mtav\n";
         throw AForm::GradeTooLowException();
+    }
 }
 
 std::string AForm::get_name() const
@@ -91,13 +99,16 @@ std::ostream& operator<<(std::ostream& os, const AForm& obj)
     return (os);
 }
 
-
 void AForm::execute(Bureaucrat const & executor) const
 {
+    std::cout << "form->signed = " << this->_signed << "\n";
     if (!this->_signed)
         throw AForm::GradeError();
     if (executor.getGrade() < this->_gradeExecute)
+    {
+        std::cout << "mtav action?\n";
         this->action();
+    }
     else
         throw AForm::GradeTooLowException();
 }

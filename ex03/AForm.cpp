@@ -100,10 +100,11 @@ std::ostream& operator<<(std::ostream& os, const AForm& obj)
 
 void AForm::execute(Bureaucrat const & executor) const
 {
-    std::cout << "form->signed = " << this->_signed << "\n";
+    std::cout << "this->signed = " << this->_signed << "\n";
     if (!this->_signed)
-        throw AForm::GradeError();
-    if (executor.getGrade() <= this->_gradeExecute)
+        std::cout << "the form not signed, can not be execute" // TO DO tany
+        // throw AForm::GradeError();
+    if (executor.getGrade() < this->_gradeExecute)
     {
         std::cout << "action?\n";
         this->action();

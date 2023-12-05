@@ -2,9 +2,9 @@
 #include <fstream>
 
 // ShrubberyCreationForm();
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& obj) : AForm(obj)
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& obj)
 {
-    this->_target = "target";
+
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target) : AForm("Shrubbery", 145, 147) //chi nkarum, 145-ic mec
@@ -16,8 +16,6 @@ ShrubberyCreationForm::~ShrubberyCreationForm() {};
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& obj)
 {
-    AForm::operator=(obj);
-    this->_target = obj._target;
     return (*this);
 }
 

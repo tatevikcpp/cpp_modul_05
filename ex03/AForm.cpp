@@ -1,6 +1,6 @@
 #include "AForm.hpp"
 
-AForm::AForm() : _signed(0), _name("name"), _gradeSign(1), _gradeExecute(1)
+AForm::AForm() : _name("name"), _gradeSign(1), _gradeExecute(1),_signed(0)
 {
 
 }
@@ -10,7 +10,7 @@ AForm::~AForm()
 
 }
 
-AForm::AForm(std::string name, int gradeSign, int gradeExecute) : _name(name), _signed(0), _gradeSign(gradeSign), _gradeExecute(gradeExecute) // 
+AForm::AForm(std::string name, int gradeSign, int gradeExecute) : _name(name), _gradeSign(gradeSign), _gradeExecute(gradeExecute),  _signed(0)// 
 {
     // std::cout << __PRETTY_FUNCTION__ << std::endl;
     if (_gradeSign < 1 || _gradeExecute < 1)
@@ -19,8 +19,8 @@ AForm::AForm(std::string name, int gradeSign, int gradeExecute) : _name(name), _
         throw GradeTooLowException();
 }
 
-AForm::AForm(const AForm& obj) : _gradeSign(obj._gradeSign), _gradeExecute(obj._gradeExecute), 
-_name(obj._name)
+AForm::AForm(const AForm& obj) :_name(obj._name), _gradeSign(obj._gradeSign), _gradeExecute(obj._gradeExecute)
+
 {
     this->_signed = obj._signed;
 }
@@ -102,7 +102,7 @@ void AForm::execute(Bureaucrat const & executor) const
 {
     std::cout << "this->signed = " << this->_signed << "\n";
     if (!this->_signed)
-        std::cout << "the form not signed, can not be execute" // TO DO tany
+        std::cout << "the form not signed, can not be execute\n" ; // TO DO tany
         // throw AForm::GradeError();
     if (executor.getGrade() < this->_gradeExecute)
     {

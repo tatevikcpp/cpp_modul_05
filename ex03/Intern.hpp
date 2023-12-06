@@ -8,10 +8,10 @@
 class Intern
 {
     public:
-        Intern();
-        Intern(const Intern& obj);
-        ~Intern();
-        Intern& operator=(const Intern& obj);
+        // Intern();
+        // Intern(const Intern& obj);
+        // ~Intern();
+        // Intern& operator=(const Intern& obj);
 
         AForm* makeForm(const std::string& name, const std::string& target);
         AForm* makeShrubbery(const std::string &target);

@@ -10,7 +10,7 @@ class AForm
         AForm();
         AForm(const AForm& obj);
         AForm(std::string name, int gradeSign, int gradeExecute);
-        ~AForm();
+        virtual ~AForm();
         AForm& operator=(const AForm& obj);
 
         void beSigned(const Bureaucrat& obj);

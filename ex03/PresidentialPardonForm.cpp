@@ -9,13 +9,15 @@ PresidentialPardonForm::PresidentialPardonForm(const std::string& target) : AFor
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& obj)
 {
-
+    this->_target = obj._target;
 };
 
 PresidentialPardonForm::~PresidentialPardonForm() {};
 
 PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm& obj)
 {
+    if (this != &obj)
+        this->_target = obj._target;
     return (*this);
 };
 

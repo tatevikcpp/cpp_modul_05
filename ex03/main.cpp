@@ -12,10 +12,10 @@ int main()
 		Intern someRandomIntern;
 		AForm* rrf;
 		rrf = someRandomIntern.makeForm("robotomy request", "Bender");
-		std::cout << rrf<< "\n";
+		// std::cout << rrf<< "\n";
 		delete rrf;
 		rrf = someRandomIntern.makeForm("shrubbery creation", "Bender");
-		rrf->execute(b);
+		// rrf->execute(b);
 		delete rrf;
 		rrf = someRandomIntern.makeForm("presidential pardon", "Bender");
 		delete rrf;

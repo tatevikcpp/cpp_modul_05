@@ -1,75 +1,35 @@
 #include "Bureaucrat.hpp"
 #include "ShrubberyCreationForm.hpp"
-#include  "RobotomyRequestForm.hpp"
+#include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
-
-// int main()
-// {
-//     try
-//     {
-//         Bureaucrat b(-10, "bob");
-//         Form obj("form", 120); // TO DO ashxatacnel
-//         obj.beSigned(b);
-
-//         std::cout << obj << std::endl;
-//         // std::cout << obj.getGrade();
-//     }
-
-//     // catch(const Form::GradeTooHighException& ex)
-//     // {
-//     //    std::cout << ex.what();
-//     // }
-
-//     // catch(const Form::GradeTooLowException& ex)
-//     // {
-//     //    std::cout << ex.what();
-//     // }
-
-//     catch(std::exception& ex)
-//     {
-//         std::cout << ex.what();
-//     }
-// }
-
 
 int	main(void)
 {
-	ShrubberyCreationForm	s1("s1");
-	RobotomyRequestForm		r1("r1");
-	PresidentialPardonForm	p1("p1");
+	try
+	{
+	
+	PresidentialPardonForm	PPF("PPF");//25 5
+	// RobotomyRequestForm		RRF("RRF");//72 45
+	// ShrubberyCreationForm	SCF("SCF");//145 147
 
-	Bureaucrat				b1(145, "b1");
-	Bureaucrat				b2(137, "b2");
-	Bureaucrat				b3(1, "b3");
+	Bureaucrat				bur(26, "bur");
 
-	std::cout << b1 << std::endl << b2 << std::endl << b3 << std::endl << std::endl;
+	// std::cout << bur << std::endl;
+	// std::cout << SCF << std::endl;
+	// bur.signForm(SCF);
+	// bur.executeForm(SCF);
 
-	std::cout << s1 << std::endl;
+	// std::cout << std::endl << RRF << std::endl;
+	// bur.signForm(RRF);
+	// bur.executeForm(RRF);
 
-	b3.executeForm(s1);
-	b1.signForm(s1);
-	b1.executeForm(s1);
-	b2.executeForm(s1);
-	b3.executeForm(s1);
-
-	std::cout << std::endl;
-
-	std::cout << r1 << std::endl;
-
-	b2.signForm(r1);
-	std::cout << r1 << std::endl;
-	b3.signForm(r1);
-	std::cout << r1 << std::endl;
-	b3.executeForm(r1);
-	b3.executeForm(r1);
-	b3.executeForm(r1);
-
-	std::cout << std::endl;
-
-	std::cout << p1 << std::endl;
-
-	b3.signForm(p1);
-	std::cout << p1 << std::endl;
-	b3.executeForm(p1);
+	// std::cout << std::endl << PPF << std::endl;
+	bur.signForm(PPF);
+	bur.executeForm(PPF);
+    }
+    catch(std::exception& ex)
+    {
+        std::cout << ex.what();
+    }
 	return (0);
 }

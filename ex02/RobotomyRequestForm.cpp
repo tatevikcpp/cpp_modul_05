@@ -1,32 +1,29 @@
 #include "RobotomyRequestForm.hpp"
 #include <cstdlib>
 // RobotomyRequestForm()
-
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& obj) : AForm(obj)
-{
-    this->_target = "target";
-}
-
-RobotomyRequestForm::RobotomyRequestForm(const std::string& target) : AForm("Robotomy", 72, 45) //chi nkarum, 145-ic mec
+RobotomyRequestForm::RobotomyRequestForm(const std::string& target) : AForm("Robotomy", 72, 45)
 {
     this->_target = target;
-}
- 
+};
+
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& obj)
+{
+    this->_target = obj._target;
+};
+
 RobotomyRequestForm::~RobotomyRequestForm() {};
 
 RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& obj)
 {
-    AForm::operator=(obj);
-    this->_target = obj._target;
+    if (this != &obj)
+        this->_target = obj._target;
     return (*this);
-}
-
+};
 
 void RobotomyRequestForm::action() const
 {
-    srand(time(NULL));
+    std::srand(time(NULL));
     int n = rand() % 2;
-    std::cout << "rand = " << n << "\n";
     switch (n)
     {
         case 0:

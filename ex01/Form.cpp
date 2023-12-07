@@ -1,6 +1,6 @@
 #include "Form.hpp"
 
-Form::Form(/* args */) : _signed(0), _name("name"), _gradeSign(1), _gradeExecute(1)
+Form::Form() :  _name("name"), _gradeSign(1), _gradeExecute(1), _signed(0)
 {
 
 }
@@ -10,31 +10,23 @@ Form::~Form()
 
 }
 
-Form::Form(std::string name, int gradeSign, int gradeExecute) : _name(name), _signed(0), _gradeSign(gradeSign), _gradeExecute(gradeExecute) // 
+Form::Form(std::string name, int gradeSign, int gradeExecute) : _name(name), _gradeSign(gradeSign), _gradeExecute(gradeExecute), _signed(0)
 {
-    // std::cout << __PRETTY_FUNCTION__ << std::endl;
     if (_gradeSign < 1 || _gradeExecute < 1)
-        throw GradeTooHighException(); //nested class
+        throw GradeTooHighException();
     else if (_gradeSign > 150 || _gradeExecute > 150)
         throw GradeTooLowException();
 }
 
-Form::Form(const Form& obj) : _gradeSign(obj._gradeSign), _gradeExecute(obj._gradeExecute), 
-_name(obj._name)
+Form::Form(const Form& obj) : _name(obj._name), _gradeSign(obj._gradeSign), _gradeExecute(obj._gradeExecute)
 {
-    // this->_name = obj._name;
-    // this->_gradeSign = obj._gradeSign;
-    // this->_gradeExecute = obj._gradeExecute;
     this->_signed = obj._signed;
 }
 
-Form& Form::operator=(const Form& obj) //TO DO kisat 
+Form& Form::operator=(const Form& obj)
 {
     if (this != &obj)
     {
-        // this->_name = obj._name;
-        // this->_gradeSign = obj._gradeSign;
-        // this->_gradeExecute = obj._gradeExecute;
         this->_signed = obj._signed;
     }
     return (*this);
@@ -48,7 +40,8 @@ void Form::beSigned(const Bureaucrat& obj)
     if (obj.getGrade() <= this->_gradeSign)
         this->_signed = 1;
     else
-        throw Form::GradeTooLowException();
+        std::cout << "is not signed" << std::endl;
+        // throw Form::GradeTooLowException();
 }
 
 std::string Form::get_name() const

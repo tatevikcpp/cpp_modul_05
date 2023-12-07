@@ -4,15 +4,13 @@ int main()
 {
     try
     {
-        Bureaucrat obj(149, "bob");
-        // obj.increment();
-        // obj.increment();
-        // obj.increment();
-        // obj.increment();
-        std::cout << obj << "\n";
-        std::cout << obj.getGrade();
-        obj.decrement();
-        obj.decrement();
+        Bureaucrat obj(150, "bob");
+        std::cout << obj << std::endl;
+        obj.increment();
+        obj.increment();
+        // obj.decrement();
+        // obj.decrement();
+        std::cout << obj.getGrade() << std::endl;
 
 
 

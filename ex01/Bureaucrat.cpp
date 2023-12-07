@@ -1,6 +1,6 @@
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat() : _name("name"), _grade(1) 
+Bureaucrat::Bureaucrat() : _name("name"), _grade(1)
 {
     // std::cout << __PRETTY_FUNCTION__ << std::endl;
 }

@@ -2,25 +2,24 @@
 
 
 // PresidentialPardonForm();
-
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& obj) : AForm(obj)
-{
-    this->_target = "target";
-}
-
-PresidentialPardonForm::PresidentialPardonForm(const std::string& target): AForm("Presidential", 25, 5) //chi nkarum, 145-ic mec
+PresidentialPardonForm::PresidentialPardonForm(const std::string& target) : AForm("Presidential", 25, 5)
 {
     this->_target = target;
-}
- 
+};
+
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& obj)
+{
+    this->_target = obj._target;
+};
+
 PresidentialPardonForm::~PresidentialPardonForm() {};
 
 PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm& obj)
 {
-    AForm::operator=(obj);
-    this->_target = obj._target;
+    if (this != &obj)
+        this->_target = obj._target;
     return (*this);
-}
+};
 
 void PresidentialPardonForm::action() const
 {

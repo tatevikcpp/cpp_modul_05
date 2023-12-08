@@ -1,29 +1,23 @@
 #include "Intern.hpp"
 
-// Intern::Intern() 
-// {
+Intern::Intern() 
+{
+};
 
-// }
+Intern::Intern(const Intern &obj) 
+{
+    (void)obj;
+};
 
-// Intern::Intern(const Intern& obj)
-// {
+Intern::~Intern() 
+{
+};
 
-// }
-
-// Intern::~Intern()
-// {
-
-// }
-
-// Intern& Intern::operator=(const Intern& obj)
-// {
-//     return (*this);
-// }
-
-// AForm* Intern::makeForm(const std::string& name, const std::string& target)
-// {
-
-// }
+Intern &Intern::operator=(const Intern &obj) 
+{
+    (void)obj;
+    return (*this);
+};
 
 
 AForm* Intern::makeShrubbery(const std::string &target)
@@ -43,9 +37,9 @@ AForm* Intern::makePresidential(const std::string &target)
 
 AForm* Intern::makeForm(const std::string& name, const std::string& target)
 {
-    int a =5;
-    int *ptr = &a;
-    *ptr = 4;
+    // int a =5;
+    // int *ptr = &a;
+    // *ptr = 4;
     std::string internMake[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
     AForm* (Intern::*fun_ptr[3])(const std::string &) = {&Intern::makeShrubbery, &Intern::makeRobotomy, &Intern::makePresidential};
 

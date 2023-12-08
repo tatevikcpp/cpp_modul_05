@@ -10,7 +10,7 @@ class AForm
         AForm();
         AForm(const AForm& obj);
         AForm(std::string name, int gradeSign, int gradeExecute);
-        virtual ~AForm();
+        ~AForm();
         AForm& operator=(const AForm& obj);
 
         void beSigned(const Bureaucrat& obj);
@@ -32,6 +32,12 @@ class AForm
                 const char* what() const throw();
         };
         class GradeError : public std::exception
+        {
+            public:
+                const char* what() const throw();
+        };
+
+        class SignedError : public std::exception
         {
             public:
                 const char* what() const throw();

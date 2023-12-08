@@ -1,6 +1,6 @@
 #include "AForm.hpp"
 
-AForm::AForm() : _name("name"), _gradeSign(1), _gradeExecute(1),_signed(0)
+AForm::AForm() :  _name("name"), _gradeSign(1), _gradeExecute(1), _signed(0)
 {
 
 }
@@ -10,7 +10,7 @@ AForm::~AForm()
 
 }
 
-AForm::AForm(std::string name, int gradeSign, int gradeExecute) : _name(name), _gradeSign(gradeSign), _gradeExecute(gradeExecute),  _signed(0)// 
+AForm::AForm(std::string name, int gradeSign, int gradeExecute) : _name(name),  _gradeSign(gradeSign), _gradeExecute(gradeExecute), _signed(0)// 
 {
     // std::cout << __PRETTY_FUNCTION__ << std::endl;
     if (_gradeSign < 1 || _gradeExecute < 1)
@@ -20,7 +20,6 @@ AForm::AForm(std::string name, int gradeSign, int gradeExecute) : _name(name), _
 }
 
 AForm::AForm(const AForm& obj) :_name(obj._name), _gradeSign(obj._gradeSign), _gradeExecute(obj._gradeExecute)
-
 {
     this->_signed = obj._signed;
 }
@@ -39,12 +38,9 @@ void AForm::beSigned(const Bureaucrat& obj)
 {
     if (this->_signed)
         throw AForm::GradeError();
-    std::cout << "BB.getGrade() = " << obj.getGrade() << "\n";
-    std::cout << "Form->_gradeSign = " << this->_gradeSign << "\n";
     if (obj.getGrade() <= this->_gradeSign)
     {
         this->_signed = 1;
-        std::cout << "form->_signed = " << this->_signed << "\n"; 
     }
     else
     {
@@ -86,6 +82,11 @@ const char* AForm::GradeError::what() const throw()
     return ("The form is already signed");
 }
 
+const char* AForm::SignedError::what() const throw()
+{
+    return ("The form is not signed");
+}
+
 std::ostream& operator<<(std::ostream& os, const AForm& obj)
 {
     os << obj.get_name();
@@ -100,13 +101,13 @@ std::ostream& operator<<(std::ostream& os, const AForm& obj)
 
 void AForm::execute(Bureaucrat const & executor) const
 {
-    // std::cout << "this->signed = " << this->_signed << "\n";
-    if (this->_signed)
-        throw AForm::GradeError();
-        // std::cout << "the form not signed, can not be execute\n" ; // TO DO tany
-    if (executor.getGrade() < this->_gradeExecute)
+    // std::cout << "this->_signed = " << this->_signed << "\n";
+    // std::cout << "executor.getGrade() = " << executor.getGrade() << "\n";
+    // std::cout << "this->_gradeExecute = " << this->_gradeExecute << "\n";
+    if (!this->_signed)
+        throw AForm::SignedError();
+    if (executor.getGrade() <= this->_gradeExecute)
     {
-        // std::cout << "action?\n";
         this->action();
     }
     else

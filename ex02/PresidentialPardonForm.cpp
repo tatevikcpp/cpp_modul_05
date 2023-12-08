@@ -7,7 +7,7 @@ PresidentialPardonForm::PresidentialPardonForm(const std::string& target) : AFor
     this->_target = target;
 };
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& obj)
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& obj) : AForm("Presidential", 25, 5)
 {
     this->_target = obj._target;
 };

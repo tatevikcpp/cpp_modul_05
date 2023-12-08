@@ -2,12 +2,12 @@
 #include <fstream>
 
 // ShrubberyCreationForm();
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& obj)
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& obj) : AForm("Shrubbery", 145, 137)
 {
     this->_target = obj._target;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target) : AForm("Shrubbery", 145, 147) //chi nkarum, 145-ic mec
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target) : AForm("Shrubbery", 145, 137) //chi nkarum, 145-ic mec
 {
     this->_target = target;
 }

@@ -6,7 +6,7 @@ RobotomyRequestForm::RobotomyRequestForm(const std::string& target) : AForm("Rob
     this->_target = target;
 };
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& obj)
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& obj) : AForm("Robotomy", 72, 45)
 {
     this->_target = obj._target;
 };

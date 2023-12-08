@@ -36,20 +36,15 @@ AForm& AForm::operator=(const AForm& obj)
 
 void AForm::beSigned(const Bureaucrat& obj)
 {
-    // std::cout << "this->_signed = " << this->_signed << "\n";
     if (this->_signed)
         throw AForm::GradeError();
-    // std::cout << "obj.getGrade() " << obj.getGrade() << "\n";
-    // std::cout << "this->_gradeSign " << this->_gradeSign << "\n";
-
     if (obj.getGrade() <= this->_gradeSign)
     {
         this->_signed = 1;
     }
     else
     {
-        std::cout << "is not signed" << std::endl;
-        // throw AForm::GradeTooLowException();
+        throw AForm::GradeTooLowException();
     }
 }
 
@@ -87,6 +82,11 @@ const char* AForm::GradeError::what() const throw()
     return ("The form is already signed");
 }
 
+const char* AForm::SignedError::what() const throw()
+{
+    return ("The form is not signed");
+}
+
 std::ostream& operator<<(std::ostream& os, const AForm& obj)
 {
     os << obj.get_name();
@@ -101,13 +101,11 @@ std::ostream& operator<<(std::ostream& os, const AForm& obj)
 
 void AForm::execute(Bureaucrat const & executor) const
 {
-    // std::cout << "signed form = " << this->_signed << "\n";
-    // if (!this->_signed)
-    if (this->_signed)
-        throw AForm::GradeError();
+    // std::cout << "this->_signed = " << this->_signed << "\n";
     // std::cout << "executor.getGrade() = " << executor.getGrade() << "\n";
     // std::cout << "this->_gradeExecute = " << this->_gradeExecute << "\n";
-
+    if (!this->_signed)
+        throw AForm::SignedError();
     if (executor.getGrade() <= this->_gradeExecute)
     {
         this->action();

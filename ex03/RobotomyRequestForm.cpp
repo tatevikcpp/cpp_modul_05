@@ -6,7 +6,7 @@ RobotomyRequestForm::RobotomyRequestForm(const std::string& target) : AForm("Rob
     this->_target = target;
 };
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& obj)
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& obj) : AForm("Robotomy", 72, 45)
 {
     this->_target = obj._target;
 };
@@ -22,8 +22,8 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& o
 
 void RobotomyRequestForm::action() const
 {
+    std::srand(time(NULL));
     int n = rand() % 2;
-    std::cout << "rand = " << n << "\n";
     switch (n)
     {
         case 0:

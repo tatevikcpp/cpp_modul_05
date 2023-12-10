@@ -17,7 +17,10 @@ ShrubberyCreationForm::~ShrubberyCreationForm() {};
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& obj)
 {
     if (this != &obj)
+    {
+        AForm::operator=(obj);
         this->_target = obj._target;
+    }
     return (*this);
 }
 

@@ -40,8 +40,7 @@ void Form::beSigned(const Bureaucrat& obj)
     if (obj.getGrade() <= this->_gradeSign)
         this->_signed = 1;
     else
-        std::cout << "is not signed" << std::endl;
-        // throw Form::GradeTooLowException();
+        throw Form::SignedError();
 }
 
 std::string Form::get_name() const
@@ -78,6 +77,10 @@ const char* Form::GradeError::what() const throw()
     return ("The form is already signed");
 }
 
+const char* Form::SignedError::what() const throw()
+{
+    return ("The form is not signed");
+}
 std::ostream& operator<<(std::ostream& os, const Form& obj)
 {
     os << obj.get_name();

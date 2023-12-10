@@ -19,21 +19,24 @@ class Form
         bool get_signed() const;
         class GradeTooLowException : public std::exception
         {
-            // GradeTooLowException() { std::cout << __PRETTY_FUNCTION__ << std::endl;}
             public:
                 const char* what() const throw();
         };
 
         class GradeTooHighException : public std::exception
         {
-            // GradeTooHighException() { std::cout << __PRETTY_FUNCTION__ << std::endl;}
             public:
                 const char* what() const throw();
         };
 
         class GradeError : public std::exception
         {
-            // GradeTooLowException() { std::cout << __PRETTY_FUNCTION__ << std::endl;}
+            public:
+                const char* what() const throw();
+        };
+
+        class SignedError : public std::exception
+        {
             public:
                 const char* what() const throw();
         };

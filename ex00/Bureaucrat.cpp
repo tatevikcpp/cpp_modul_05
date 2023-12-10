@@ -8,7 +8,6 @@ Bureaucrat::Bureaucrat() : _name("name"), _grade(1)
 Bureaucrat::Bureaucrat(const Bureaucrat& obj) : _name(obj._name)
 {
     // std::cout << __PRETTY_FUNCTION__ << std::endl;
-    // this->_name = obj._name;
     this->_grade = obj._grade;
 }
 
@@ -17,7 +16,7 @@ Bureaucrat::Bureaucrat(int grade, const std::string& name) : _name(name)
     // std::cout << __PRETTY_FUNCTION__ << std::endl;
     if (grade < 1)
     {
-        throw GradeTooHighException(); //nested class
+        throw GradeTooHighException();
     }
     else if (grade > 150)
         throw GradeTooLowException();
@@ -80,6 +79,5 @@ const char* Bureaucrat::GradeTooLowException::what() const throw()
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& obj)
 {
-    // <name>, bureaucrat grade <grade>
     return (os << obj.getName() << ", bureaucrat grade " << obj.getGrade());
 }

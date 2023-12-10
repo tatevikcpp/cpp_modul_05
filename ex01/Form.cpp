@@ -40,7 +40,7 @@ void Form::beSigned(const Bureaucrat& obj)
     if (obj.getGrade() <= this->_gradeSign)
         this->_signed = 1;
     else
-        throw Form::SignedError();
+        throw Form::GradeTooLowException();
 }
 
 std::string Form::get_name() const
